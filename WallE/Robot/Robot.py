@@ -1,5 +1,7 @@
 from .util import get_impl
 
+reserved_attr = set(['clean_cache'])
+
 class Robot:
     __instance = None
 
@@ -12,8 +14,14 @@ class Robot:
 
     def __getattr__(self, attr):
         """ Delegate access to actual robot implementation """
-        return getattr(self.__instance, attr)
+        if attr in reserved_attr:
+            return getattr(self, attr)
+        else:
+            return getattr(self.__instance, attr)
 
     def __setattr__(self, attr, value):
         """ Delegate access to actual robot implementation """
         return setattr(self.__instance, attr, value)
+
+    def clean_cache(self):
+        print('cleaning cache ...')
