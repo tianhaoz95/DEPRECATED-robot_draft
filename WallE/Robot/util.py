@@ -2,7 +2,7 @@ from importlib import import_module
 
 def get_impl(mode, info):
     if mode == 'local':
-        return get_local_impl(info['file_path'], info['class_name'])
+        return get_local_impl(info['module_name'], info['class_name'])
     return None
 
 def get_local_impl(file_path, class_name):
