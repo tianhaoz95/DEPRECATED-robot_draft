@@ -16,16 +16,15 @@ class SimpleRoutine(Routine):
     def __init__(self):
         self.tasks = []
 
-    def load_task(self, robot, module_name, class_name):
-        # task = load_local_task_module(robot, module_name, class_name)
-        url = 'https://github.com/tianhaoz95/robot_draft/archive/master.zip'
-        task = load_remote_task_module(robot, module_name, class_name, url)
-        return task
-
-    def add(self, robot, task_meta):
+    def add(self, robot, mode, task_meta):
         module_name = task_meta['module_name']
         class_name = task_meta['class_name']
-        task = self.load_task(robot, module_name, class_name)
+        task = None
+        if mode == 'local':
+            task = load_local_task_module(robot, module_name, class_name)
+        if mode == 'remote':
+            url = task_meta['url']
+            task = load_remote_task_module(robot, module_name, class_name, url)
         self.tasks.append(task)
 
     def run(self):
