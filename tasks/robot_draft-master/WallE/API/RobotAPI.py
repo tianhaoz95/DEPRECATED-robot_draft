@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 
 class RobotAPI(ABC):
-
+    
     @abstractmethod
-    def start(self):
+    def start():
         pass
 
     @abstractmethod
-    def shutdown(self):
+    def shutdown():
         pass

@@ -5,7 +5,7 @@ def get_impl(mode, info):
         return get_local_impl(info['module_name'], info['class_name'])
     return None
 
-def get_local_impl(module_name, class_name):
-    robot_module = import_module(module_name)
+def get_local_impl(file_path, class_name):
+    robot_module = import_module(file_path)
     robot_impl = getattr(robot_module, class_name)
     return robot_impl
